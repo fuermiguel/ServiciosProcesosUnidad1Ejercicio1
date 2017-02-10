@@ -24,6 +24,7 @@ public class Ejecuta {
      */
     public static void main(String[] args) {
         String salida = null;
+        BufferedReader stdInput = null;
         
          if (args.length <= 0) {
             System.err.println("Se necesita un programa a ejecutar");
@@ -49,7 +50,7 @@ public class Ejecuta {
             */
            
             //Redireccionamos la salida del proceso hijo como entrada del proceso padre
-            BufferedReader stdInput = new BufferedReader(
+            stdInput = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
             
             //Si el comando ejecutado en el subproceso process tiene salida, la mostramos
@@ -75,7 +76,15 @@ public class Ejecuta {
             System.err.println("El proceso hijo finalizó de forma incorrecta");
             System.exit(-1);
 
+        }finally {
+        try {
+	    if (stdInput != null) {
+               stdInput.close();
+            }
+        } catch (IOException ex) {
+              ex.printStackTrace();
         }
+    }
     }
     
 }
