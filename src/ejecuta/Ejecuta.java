@@ -58,7 +58,6 @@ public class Ejecuta {
                 while ((salida=stdInput.readLine()) != null){
                     System.out.println(salida);
                 }
-                process.destroy();
             }else{
                 System.out.println("No se a producido ninguna salida");
             }
